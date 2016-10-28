@@ -1,4 +1,4 @@
-var pg = require('pg')
+let pg = require('pg')
 
 pg.defaults.ssl = true
 pg.connect(process.env.DATABASE_URL, function(err, client) {
