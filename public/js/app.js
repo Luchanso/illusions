@@ -3,6 +3,10 @@
 var maxScore = 151
 var score = 0
 
+VK.init(function() { 
+  }, function() {
+}, '5.59');
+
 var scoreTable = {
   verified: maxScore,
   date: 100,
