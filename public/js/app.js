@@ -65,6 +65,7 @@ function getWall(id) {
     owner_id: [id],
     count: 1
   }, (data) => {
+    console.log(data)
     data = data.response
 
     let ratio = data.count / wallPostMinCount
