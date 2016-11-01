@@ -3,7 +3,7 @@
 var maxScore = 151
 var score = 0
 
-VK.init(function() { 
+VK.init(function() {
   }, function() {
 }, '5.59');
 
@@ -12,7 +12,7 @@ var scoreTable = {
   date: 100,
   city: 1,
   wall: 25,
-  friends: 25,
+  friends: 35,
 }
 
 function centeringPage() {
@@ -47,7 +47,7 @@ function getVkData(id) {
 }
 
 function getFriends(id) {
-  const minFriends = 100;
+  const minFriends = 200;
 
   VK.api('friends.get', {
     user_id: id,
