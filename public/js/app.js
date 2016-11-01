@@ -50,11 +50,13 @@ function getFriends(id) {
     count: 1,
     fields: 'city'
   }, (data) => {
+    console.log(data)
     data = data.response
 
     let ratio = (data.count / minFriends)
 
     score += ratio > 1 ? scoreTable.friends : ratio * scoreTable.friends
+    updateScore()
   })
 }
 
@@ -65,6 +67,7 @@ function getWall(id) {
     owner_id: id,
     count: 1
   }, (data) => {
+    console.log(data)
     data = data.response
 
     let ratio = data.count / wallPostMinCount
