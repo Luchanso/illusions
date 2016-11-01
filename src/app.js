@@ -35,6 +35,3 @@ function newId(id) {
 server.listen(app.get('port'), function () {
   console.log(`Example app listening on port ${app.get('port')}!`)
 })
-
-
-newId(1)
