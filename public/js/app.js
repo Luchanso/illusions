@@ -1,12 +1,13 @@
 // const id = 210700286
 // const verified = true
-var maxScore = 101
+var maxScore = 111
 var score = 0
 
 var scoreTable = {
   verified: maxScore,
   date: 100,
   city: 1,
+  wall: 10
 }
 
 function centeringPage() {
@@ -35,6 +36,27 @@ function agragate() {
 }
 
 function getVkData(id) {
+  userGet(id)
+  wallGet(id)
+}
+
+function wallGet(id) {
+  const wallPostMinCount = 50
+
+  vk.api('wall.get', {
+    owner_id: [id],
+    count: 1
+  }, (data) => {
+    data = data.response
+
+    let ratio = data.count / wallPostMinCount
+    score += ratio > 1 ? scoreTable.wall : ratio * scoreTable.wall
+
+    updateScore()
+  })
+}
+
+function userGet(id) {
   VK.api('users.get', {
     user_ids: [id],
     fields: 'city,verified'
