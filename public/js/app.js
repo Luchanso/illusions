@@ -45,7 +45,7 @@ function getVkData(id) {
 function getFriends(id) {
   const minFriends = 100;
 
-  vk.api('friends.get', {
+  VK.api('friends.get', {
     user_id: id,
     count: 1,
     fields: 'city'
@@ -61,7 +61,7 @@ function getFriends(id) {
 function getWall(id) {
   const wallPostMinCount = 50
 
-  vk.api('wall.get', {
+  VK.api('wall.get', {
     owner_id: [id],
     count: 1
   }, (data) => {
