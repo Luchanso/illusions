@@ -1,7 +1,13 @@
 // const id = 210700286
 // const verified = true
-var maxScore = 100
+var maxScore = 101
 var score = 0
+
+var scoreTable = {
+  verified: maxScore,
+  date: 100,
+  city: 1,
+}
 
 function centeringPage() {
   const app = $('#centering-anchor')
@@ -29,7 +35,14 @@ function getVkData(id) {
     user_ids: [id],
     fields: 'city,verified'
   }, (data) => {
+    if (data.city) {
+      score += scoreTable.city
+    }
+    if (data.verified) {
+      score += scoreTable.verified
+    }
 
+    updateScore()
   })
 }
 
@@ -38,7 +51,7 @@ function userRegistrationDate(date) {
 
   let timespan = Date.now() - new Date(date).getTime()
 
-  score += 100 * (timespan / min)
+  score += scoreTable.date * (timespan / min)
 
   updateScore()
 }
