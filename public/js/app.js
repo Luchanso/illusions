@@ -71,7 +71,10 @@ function showCounter() {
 }
 
 function updateScore() {
-  $('calculate').text(Math.round((1 - score/maxScore) * 100) + '%')
+  let percent = Math.round((1 - score/maxScore) * 100)
+  percent = percent < 0 ? 0 : percent
+
+  $('calculate').text(percent + '%')
 }
 
 centeringPage()
