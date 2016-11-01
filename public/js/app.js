@@ -22,12 +22,16 @@ function addEvents() {
 
 function agragate() {
   score = 0
+
   showCounter()
+
   const id = preapreId($('#enter-id').val())
 
   var socket = io.connect('/', {transports: ['websocket']})
   socket.emit('getRegistrationDate', id)
   socket.on('getRegistrationDate', userRegistrationDate)
+
+  getVkData(id)
 }
 
 function getVkData(id) {
