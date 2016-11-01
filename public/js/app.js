@@ -1,5 +1,6 @@
 // const id = 210700286
 // const verified = true
+var maxScore = 100
 var score = 0
 
 function centeringPage() {
@@ -14,6 +15,7 @@ function addEvents() {
 }
 
 function agragate() {
+  score = 0
   showCounter()
   const id = preapreId($('#enter-id').val())
 
@@ -37,6 +39,8 @@ function userRegistrationDate(date) {
   let timespan = Date.now() - new Date(date).getTime()
 
   score += 100 * (timespan / min)
+
+  updateScore()
 }
 
 function preapreId(str) {
@@ -44,7 +48,11 @@ function preapreId(str) {
 }
 
 function showCounter() {
-  $('.counter').css('visibility', 'inherit')
+  $('.counter').css('opacity', '1')
+}
+
+function updateScore() {
+  $('calculate').text(Math.round((1 - score/maxScore) * 100) + '%')
 }
 
 centeringPage()

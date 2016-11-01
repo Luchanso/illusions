@@ -14,11 +14,14 @@ app.use(express.static(__dirname + '/../public'))
 io.on('connection', (socket) => {
   let user
 
-  socket.on('getRegistrationDate', newId)
+  socket.on('getRegistrationDate', getRegistrationDate.bind({socket, user}))
 })
 
 // Not work with id59967447
-function newId(id) {
+function getRegistrationDate(id) {
+  let socket = this.socket
+  let user = this.user
+
   user = new User(id)
   user.getRowData()
     .then(() => {

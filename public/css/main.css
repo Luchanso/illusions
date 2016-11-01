@@ -27,5 +27,6 @@
 }
 
 .counter {
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.33s ease-in-out;
 }
