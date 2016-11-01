@@ -39,6 +39,7 @@ function getVkData(id) {
     user_ids: [id],
     fields: 'city,verified'
   }, (data) => {
+    console.log(data)
     if (data.city) {
       score += scoreTable.city
     }
