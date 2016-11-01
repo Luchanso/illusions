@@ -47,7 +47,7 @@ function getFriends(id) {
 
   vk.api('friends.get', {
     user_id: id,
-    count: 1
+    count: 1,
     fields: 'city'
   }, (data) => {
     data = data.response
