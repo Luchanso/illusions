@@ -1,6 +1,6 @@
 // const id = 210700286
 // const verified = true
-let maxScore = 160
+let maxScore = 180
 let score = 0
 
 let firstDate = new Date("2006-09-23T20:26:12+03:00")
@@ -16,7 +16,7 @@ var scoreTable = {
   wall: 25,
   friends: 35,
   followers: 4,
-  firstPhoto: 5,
+  firstPhoto: 25,
 }
 
 function centeringPage() {
