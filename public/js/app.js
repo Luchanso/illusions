@@ -1,7 +1,9 @@
 // const id = 210700286
 // const verified = true
-var maxScore = 156
-var score = 0
+let maxScore = 155
+let score = 0
+
+let firstDate = new Date("2006-09-23T20:26:12+03:00")
 
 VK.init(function() {
   }, function() {
@@ -13,7 +15,8 @@ var scoreTable = {
   city: 1,
   wall: 25,
   friends: 35,
-  followers: 5,
+  followers: 4,
+  firstPhoto: 100,
 }
 
 function centeringPage() {
@@ -42,6 +45,7 @@ function getVkData(id) {
   getRegistrationDate(id)
   getWall(id)
   getFriends(id)
+  getFirstPhotoDate(id)
 }
 
 function getRegistrationDate(id) {
@@ -107,7 +111,7 @@ function getUsers(id) {
 }
 
 function getFollowers(followers) {
-  const minFollowers = 15
+  const minFollowers = 25
 
   let ratio = (followers / minFollowers)
 
@@ -115,13 +119,59 @@ function getFollowers(followers) {
   updateScore()
 }
 
-function userRegistrationDate(date) {
-  const min = Date.now() - (new Date("2006-09-23T20:26:12+03:00")).getTime()
+function getFirstPhotoDate(id) {
+  let result = []
 
-  let timespan = Date.now() - new Date(date).getTime()
+  getPhoto('wall', id)
+    .then(date => {
+      result.push(date)
+      return getPhoto('saved', id)
+    })
+    .then(date => {
+      result.push(date)
+      return getPhoto('profile', id)
+    })
+    .then(date => {
+      result.push(date)
+
+      result.sort((a, b) => {
+        a = new Date(a)
+        b = new Date(b)
+
+        return a < b ? -1 : a > b ? 1 : 0
+      })
+
+      return result[0]
+    })
+    .then(date => {
+      console.log(date)
+
+      const min = Date.now() - (firstDate).getTime()
+      const timespan = Date.now() - new Date(date).getTime()
+
+      score += scoreTable.firstPhoto * (timespan / min)
+      updateScore()
+    })
+}
+
+function getPhoto(type, id) {
+  return new Promise((res, rej) => {
+    VK.api('photos.get', {
+      owner_id: id,
+      album_id: type,
+      rev: false,
+      count: 1
+    }, (data) => {
+      res(data.response.items[0].date)
+    })
+  })
+}
+
+function userRegistrationDate(date) {
+  const min = Date.now() - (firstDate).getTime()
+  const timespan = Date.now() - new Date(date).getTime()
 
   score += scoreTable.date * (timespan / min)
-
   updateScore()
 }
 
