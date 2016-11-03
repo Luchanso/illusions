@@ -110,7 +110,17 @@ function userRegistrationDate(date) {
 }
 
 function preapreId(str) {
-  return +str
+  if (str.indexOf('//vk.com/') !== -1) {
+    str = str.split('//vk.com/')[1]
+  } else {
+    str = +str
+  }
+
+  if (Number.isNaN(str)) {
+    return Materialize.toast('Некоректнная строка', 4000)
+  }
+
+  return str
 }
 
 function showCounter() {
