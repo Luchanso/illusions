@@ -138,7 +138,13 @@ function updateScore() {
   let percent = Math.round((1 - score/maxScore) * 100)
   percent = percent < 0 ? 0 : percent
 
-  $('calculate').text(percent + '%')
+  var tween = new TWEEN.Tween(window)
+      .to({ score: val }, 1000)
+      .onUpdate(function() {
+        $('calculate').text(percent + '%')        
+      })
+      .start();
+
 }
 
 centeringPage()
