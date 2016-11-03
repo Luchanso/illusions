@@ -135,9 +135,6 @@ function getFirstPhotoDate(id) {
       result.push(date)
 
       result.sort((a, b) => {
-        a = new Date(a)
-        b = new Date(b)
-
         return a < b ? -1 : a > b ? 1 : 0
       })
 
@@ -145,8 +142,6 @@ function getFirstPhotoDate(id) {
     })
     .then(date => {
       date *= 1000
-
-      console.log(date)
 
       const min = Date.now() - (firstDate).getTime()
       const timespan = Date.now() - new Date(date).getTime()
@@ -161,7 +156,7 @@ function getPhoto(type, id) {
     VK.api('photos.get', {
       owner_id: id,
       album_id: type,
-      rev: false,
+      rev: 0,
       count: 1
     }, (data) => {
       res(data.response.items[0].date)
