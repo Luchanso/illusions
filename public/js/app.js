@@ -31,6 +31,7 @@ function addEvents() {
 }
 
 function agragate() {
+  hideCounter()
   const id = preapreId($('#enter-id').val())
 
   score = 0
@@ -199,6 +200,10 @@ function preapreId(str) {
 
 function showCounter() {
   $('.counter').css('opacity', '1')
+}
+
+function hideCounter() {
+  $('.counter').css('opacity', '0')
 }
 
 function updateScore() {
