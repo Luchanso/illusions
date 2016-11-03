@@ -27,23 +27,26 @@ function addEvents() {
 }
 
 function agragate() {
+  const id = preapreId($('#enter-id').val())
+
   score = 0
 
   showCounter()
 
-  const id = preapreId($('#enter-id').val())
-
-  var socket = io.connect('/', {transports: ['websocket']})
-  socket.emit('getRegistrationDate', id)
-  socket.on('getRegistrationDate', userRegistrationDate)
-
-  getVkData(id)
+  getUsers(id)
+    .then(getVkData)
 }
 
 function getVkData(id) {
-  getUsers(id)
+  getRegistrationDate(id)
   getWall(id)
   getFriends(id)
+}
+
+function getRegistrationDate(id) {
+  var socket = io.connect('/', {transports: ['websocket']})
+  socket.emit('getRegistrationDate', id)
+  socket.on('getRegistrationDate', userRegistrationDate)
 }
 
 function getFriends(id) {
@@ -82,20 +85,24 @@ function getWall(id) {
 }
 
 function getUsers(id) {
-  VK.api('users.get', {
-    user_ids: [id],
-    fields: 'city,verified'
-  }, (data) => {
-    data = data.response[0]
+  return new Promise((res, rej) => {
+    VK.api('users.get', {
+      user_ids: [id],
+      fields: 'city,verified'
+    }, (data) => {
+      data = data.response[0]
 
-    if (data.city) {
-      score += scoreTable.city
-    }
-    if (data.verified) {
-      score += scoreTable.verified
-    }
+      if (data.city) {
+        score += scoreTable.city
+      }
+      if (data.verified) {
+        score += scoreTable.verified
+      }
 
-    updateScore()
+      updateScore()
+
+      res(data.id)
+    })
   })
 }
 
