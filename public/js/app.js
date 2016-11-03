@@ -146,6 +146,8 @@ function getFirstPhotoDate(id) {
     .then(date => {
       date *= 1000
 
+      console.log(date)
+
       const min = Date.now() - (firstDate).getTime()
       const timespan = Date.now() - new Date(date).getTime()
 
