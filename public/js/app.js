@@ -45,7 +45,7 @@ function getVkData(id) {
   getRegistrationDate(id)
   getWall(id)
   getFriends(id)
-  // getFirstPhotoDate(id)
+  getFirstPhotoDate(id)
 }
 
 function getRegistrationDate(id) {
@@ -141,6 +141,8 @@ function getFirstPhotoDate(id) {
       return result[0]
     })
     .then(date => {
+      date *= 1000
+
       const min = Date.now() - (firstDate).getTime()
       const timespan = Date.now() - new Date(date).getTime()
 
