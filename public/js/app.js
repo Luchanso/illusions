@@ -34,6 +34,8 @@ function agragate() {
   hideCounter()
   const id = preapreId($('#enter-id').val())
 
+  if (!id) return
+
   score = 0
 
   getUser(id)
@@ -190,9 +192,11 @@ function preapreId(str) {
   }
 
   if (Number.isNaN(str) || str === '') {
-    return Materialize.toast('Некоректнная строка', 4000, 'red')
+    Materialize.toast('Некоректнная строка', 4000, 'red')
+    return null
   } else if (str === 0) {
-    return Materialize.toast('Пустая строка :c', 4000, 'red')
+    Materialize.toast('Пустая строка :c', 4000, 'red')
+    return null
   }
 
   return str
