@@ -39,6 +39,9 @@ function agragate() {
 
   getUsers(id)
     .then(getVkData)
+    .catch(err => {
+      Materialize.toast('Пользователь не найден 😟', 4000, 'red')
+    })
 }
 
 function getVkData(id) {
@@ -95,6 +98,11 @@ function getUsers(id) {
       fields: 'city,verified'
     }, (data) => {
       data = data.response[0]
+      error = data.error
+
+      if (error) {
+        rej()
+      }
 
       if (data.city) {
         score += scoreTable.city
