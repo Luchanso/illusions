@@ -1,2 +1,3 @@
-git commit -am "Update"
+git add -A
+git commit -m "Update"
 git push heroku master
