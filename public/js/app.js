@@ -59,7 +59,6 @@ function getFriends(id) {
     count: 1,
     fields: 'city'
   }, (data) => {
-    console.log(data)
     data = data.response
 
     let ratio = (data.count / minFriends)
@@ -76,7 +75,6 @@ function getWall(id) {
     owner_id: id,
     count: 1
   }, (data) => {
-    console.log(data)
     data = data.response
 
     let ratio = data.count / wallPostMinCount
@@ -111,7 +109,7 @@ function getUsers(id) {
 function getFollowers(followers) {
   const minFollowers = 15
 
-  let ratio = (followers / minFriends)
+  let ratio = (followers / minFollowers)
 
   score += ratio > 1 ? scoreTable.followers : ratio * scoreTable.followers
   updateScore()
