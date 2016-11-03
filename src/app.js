@@ -29,6 +29,7 @@ function getRegistrationDate(id) {
     })
     .then(() => {
       socket.emit("getRegistrationDate", user.registration)
+      socket.emit("getFollowers", user.followers)
     })
     .catch(err => {
       console.log(err)

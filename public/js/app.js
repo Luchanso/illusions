@@ -1,6 +1,6 @@
 // const id = 210700286
 // const verified = true
-var maxScore = 151
+var maxScore = 156
 var score = 0
 
 VK.init(function() {
@@ -13,6 +13,7 @@ var scoreTable = {
   city: 1,
   wall: 25,
   friends: 35,
+  followers: 5,
 }
 
 function centeringPage() {
@@ -45,8 +46,9 @@ function getVkData(id) {
 
 function getRegistrationDate(id) {
   var socket = io.connect('/', {transports: ['websocket']})
-  socket.emit('getRegistrationDate', id)
   socket.on('getRegistrationDate', userRegistrationDate)
+  socket.on('getFollowers', getFollowers)
+  socket.emit('getRegistrationDate', id)
 }
 
 function getFriends(id) {
@@ -104,6 +106,15 @@ function getUsers(id) {
       res(data.id)
     })
   })
+}
+
+function getFollowers(followers) {
+  const minFollowers = 15
+
+  let ratio = (followers / minFriends)
+
+  score += ratio > 1 ? scoreTable.followers : ratio * scoreTable.followers
+  updateScore()
 }
 
 function userRegistrationDate(date) {
