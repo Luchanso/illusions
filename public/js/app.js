@@ -35,10 +35,12 @@ function agragate() {
 
   score = 0
 
-  showCounter()
-
   getUsers(id)
-    .then(getVkData)
+    .then(id => {
+      showCounter()
+
+      getVkData(id)
+    })
     .catch(err => {
       Materialize.toast('Пользователь не найден 😟', 4000, 'red')
     })
