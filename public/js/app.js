@@ -16,7 +16,7 @@ var scoreTable = {
   wall: 25,
   friends: 35,
   followers: 4,
-  firstPhoto: 25,
+  firstPhoto: 25
 }
 
 function centeringPage() {
