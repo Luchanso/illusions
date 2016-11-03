@@ -39,7 +39,6 @@ function agragate() {
   getUser(id)
     .then(id => {
       showCounter()
-      score = 0
 
       getVkData(id)
     })
@@ -106,6 +105,8 @@ function getUser(id) {
       } else {
         rej()
       }
+
+      score = 0
 
       if (data.city) {
         score += scoreTable.city
