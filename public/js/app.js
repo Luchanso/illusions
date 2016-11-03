@@ -35,7 +35,7 @@ function agragate() {
 
   score = 0
 
-  getUsers(id)
+  getUser(id)
     .then(id => {
       showCounter()
 
@@ -93,16 +93,15 @@ function getWall(id) {
   })
 }
 
-function getUsers(id) {
+function getUser(id) {
   return new Promise((res, rej) => {
     VK.api('users.get', {
       user_ids: [id],
       fields: 'city,verified'
     }, (data) => {
-      data = data.response[0]
-      error = data.error
-
-      if (error) {
+      if (data.response) {
+        data = data.response[0]
+      } else {
         rej()
       }
 
