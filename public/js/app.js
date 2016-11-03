@@ -36,11 +36,10 @@ function agragate() {
 
   if (!id) return
 
-  score = 0
-
   getUser(id)
     .then(id => {
       showCounter()
+      score = 0
 
       getVkData(id)
     })
