@@ -124,7 +124,9 @@ function preapreId(str) {
   }
 
   if (Number.isNaN(str)) {
-    return Materialize.toast('Некоректнная строка', 4000)
+    return Materialize.toast('Некоректнная строка', 4000, 'red')
+  } else if (str === 0) {
+    return Materialize.toast('Пустая строка :c', 4000, 'red')
   }
 
   return str
