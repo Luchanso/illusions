@@ -44,7 +44,7 @@ function agragate() {
       getVkData(id)
     })
     .catch(err => {
-      Materialize.toast('Пользователь не найден 😟', 4000, 'red')
+      Materialize.toast('Пользователь не найден 😢', 4000, 'red')
     })
 }
 
@@ -194,7 +194,7 @@ function preapreId(str) {
     Materialize.toast('Некоректнная строка', 4000, 'red')
     return null
   } else if (str === 0) {
-    Materialize.toast('Пустая строка :c', 4000, 'red')
+    Materialize.toast('Пустая строка 😢', 4000, 'red')
     return null
   }
 
