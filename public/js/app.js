@@ -179,7 +179,7 @@ function preapreId(str) {
     str = +str
   }
 
-  if (Number.isNaN(str) && str === '') {
+  if (Number.isNaN(str) || str === '') {
     return Materialize.toast('Некоректнная строка', 4000, 'red')
   } else if (str === 0) {
     return Materialize.toast('Пустая строка :c', 4000, 'red')
