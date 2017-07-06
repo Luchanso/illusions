@@ -13,7 +13,7 @@
   "dependencies": {
     "express": "4.14.0",
     "pg": "6.1.0",
-    "request": "2.76.0",
+    "request": "2.81.0",
     "socket.io": "1.5.1",
     "uws": "0.11.0",
     "xml-parser": "1.2.1"
